@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>ShopeMe Online-Ecommerce</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/images/favicon/favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'fonts.googleapis.com/cssdd1b.css'  %}"
+    />
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/vendor/vendor.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static  'assets/css/plugins/plugins.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/style.min.css' %}"
+    />
+    <script type="text/javascript">
+      const user = '{{request.user}}';
+      function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + '=') {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getToken('csrftoken');
+    </script>
+  </head>
+
+  <body>
+    {% block content %}
+      {% include './main/navbar.html' %} 
+    {% endblock content%}
+    <!-- OffCanvas Cart Start -->
+    <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+      <div class="inner">
+        <div class="head">
+          <span class="title">Cart</span>
+          <button class="offcanvas-close">×</button>
+        </div>
+        <div class="body customScroll">
+          <ul class="minicart-product-list">
+            {% for item in items %}
+            <li>
+              <a href="single-product.html" class="image"
+                ><img src="{{ item.product.imageURL }}" alt="Cart product Image"
+              /></a>
+              <div class="content">
+                <a href="single-product.html" class="title"
+                  >{{ item.product.name }}</a
+                >
+                <span class="quantity-price"
+                  >1 x
+                  <span class="amount"
+                    >Ksh.{{ item.get_total|floatformat:2 }}</span
+                  ></span
+                >
+                <a href="#" class="remove">×</a>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="foot">
+          <div class="sub-total">
+            <strong>Subtotal :</strong>
+            <span class="amount">Ksh.{{ item.get_total|floatformat:2 }}</span>
+          </div>
+          <div class="buttons">
+            <a
+              href="{% url 'cart' %}"
+              class="btn btn-dark btn-hover-primary mb-30px"
+              >view cart</a
+            >
+            <a href="{% url 'checkout' %}" class="btn btn-outline-dark current-btn"
+              >checkout</a
+            >
+          </div>
+          <p class="minicart-message">Free Shipping on All Orders Over Ksh200!</p>
+        </div>
+      </div>
+    </div>
+<!-- OffCanvas Cart End -->
+    <script src="{% static 'assets/js/vendor/vendor.min.js' %} "></script>
+    <script src="{% static 'assets/js/plugins/plugins.min.js' %} "></script>
+    <!-- Main Activation JS -->
+    <script
+      type="text/javascript"
+      src="{% static 'assets/js/main.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'assets/js/cart.js' %}"
+    ></script>
+  </body>
+</html>
