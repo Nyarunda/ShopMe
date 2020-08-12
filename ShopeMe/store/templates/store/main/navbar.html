@@ -253,27 +253,8 @@
                   ><i class="icon-heart"></i
                 ></a>
                 <a href="#offcanvas-cart" class="bag offcanvas-toggle"
-                  ><i class="icon-bag"
-                    ><p
-                      style="
-                        position: absolute;
-                        bottom: -3px;
-                        left: 17px;
-                        display: inline-block;
-                        width: 20px;
-                        height: 20px;
-                        color: #fff;
-                        background: #eb2606;
-                        line-height: 20px;
-                        font-size: 12px;
-                        border-radius: 100%;
-                        text-align: center;
-                        font-weight: 700;
-                      "
-                    >
-                      {{cartItems}}
-                    </p></i
-                  ></a
+                  ><i class="icon-bag"></i
+                  ><span class="cart-item">{{cartItems}}</span></a
                 >
               </div>
             </div>
@@ -608,6 +589,6 @@
   <!-- header menu -->
 </header>
 <!-- Header Section End Here -->
-{% include './mobile-header.html' %} {% include './search-category.html' %} {%
-include './mobile-category.html' %} {% include './offcanvas-whishlist.html' %}
+{% include './mobile-header.html' %} {% include './search-category.html' %}
+{% include './mobile-category.html' %} {% include './offcanvas-whishlist.html' %}
 {% include './offcanvas-ovalay.html' %} {% endblock content %}

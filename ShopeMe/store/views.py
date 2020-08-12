@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+import datetime
 from .models import *
+
+from .utils import cookiesCart
 
 # Create your views here.
 
@@ -14,9 +17,11 @@ def store(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = order['get_cart_total']
+        cookiesData = cookiesCart(request)
+        cartItems = cookiesData['cartItems']
+        order = cookiesData['order']
+        items = cookiesData['items']
+
     products = Product.objects.all()
     context = {'products': products, 'cartItems': cartItems}
     return render(request, 'store/store.html', context)
@@ -30,10 +35,13 @@ def cart(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = order.get_cart_items
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+        cookiesData = cookiesCart(request)
+        cartItems = cookiesData['cartItems']
+        order = cookiesData['order']
+        items = cookiesData['items']
+
+    context = {'items': items, 'order': order,
+               'cartItems': cartItems, 'shipping': False}
     return render(request, 'store/cart.html', context)
 
 
@@ -45,10 +53,13 @@ def checkout(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = order.get_cart_items
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+        cookiesData = cookiesCart(request)
+        cartItems = cookiesData['cartItems']
+        order = cookiesData['order']
+        items = cookiesData['items']
+
+    context = {'items': items, 'order': order,
+               'cartItems': cartItems, 'shipping': False}
     return render(request, 'store/checkout.html', context)
 
 
@@ -68,10 +79,40 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.save()
     if orderItem.quantity <= 0:
         orderItem.delete()
-    orderItem.save()
     return JsonResponse('Item was Added', safe=False)
+
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+    print(data)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+        print(total)
+
+        if total == order.get_cart_total:
+            order.complete = True
+            print('cart Total', total)
+        order.save()
+
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                zipcode=data['shipping']['zipcode'],
+            )
+    else:
+        print('User Not Authenticated')
+    return JsonResponse('Payment Completed', safe=False)
 
 
 def main(request):
@@ -80,5 +121,6 @@ def main(request):
 
 
 def accounts(request):
+
     context = {}
     return render(request, 'store/my-account.html', context)

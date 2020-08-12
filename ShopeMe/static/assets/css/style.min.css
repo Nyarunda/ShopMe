@@ -63,6 +63,37 @@ textarea:focus {
   outline: 0 dotted;
   outline: 0 auto -webkit-focus-ring-color;
 }
+.cart-item {
+  position: absolute;
+  bottom: -3px;
+  left: 0px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background: #b92b27;
+  line-height: 20px;
+  font-size: 12px;
+  border-radius: 100%;
+  text-align: center;
+  font-weight: 700;
+}
+.payment {
+  cursor: pointer;
+  font-family: Lato, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 123123px;
+  border: 0;
+  color: #fff;
+  background-color: #171717;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.21);
+  padding: 6px 6px 6px 12px;
+}
+.payment :hover {
+  background-color: #37a000;
+}
 a:hover {
   text-decoration: none;
 }

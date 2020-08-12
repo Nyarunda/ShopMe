@@ -56,24 +56,20 @@
                   <td class="product-quantity">
                     <div class="cart-plus-minus">
                       <div
-                        data-product="{{"
-                        item.product.id
-                        }}
+                        data-product={{ item.product.id }}
                         data-action="remove"
                         class="dec qtybutton update-cart"
                         name="qtybutton"
                       ></div>
 
                       <input
-                        class="cart-plus-minus-box"
+                        class="cart-plus-minus-box update-cart"
                         type="text"
                         name="qtybutton"
                         value="{{item.quantity}}"
                       />
                       <div
-                        data-product="{{"
-                        item.product.id
-                        }}
+                        data-product={{ item.product.id }}
                         data-action="add"
                         class="inc qtybutton update-cart"
                         name="qtybutton"

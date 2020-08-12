@@ -56,63 +56,34 @@
         return cookieValue;
       }
       var csrftoken = getToken('csrftoken');
+
+      // FOr Storing Cookies
+      const getCookies = (name) => {
+        // Split and get name=value pairs
+        let cookieArr = document.cookie.split(';');
+        //Loop the array
+        for (let i = 0; i < cookieArr.length; i++) {
+          let cookiePair = cookieArr[i].split('=');
+          //Remove whitespace and beg and end && compare with given string
+          if (name == cookiePair[0].trim()) {
+            // Decode and return cookie
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+        return null;
+      };
+      let cart = JSON.parse(getCookies('cart'));
+      if (cart == undefined) {
+        cart = {};
+        console.log('Cart was created', cart);
+        document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
+      }
+      console.log({ cart });
     </script>
   </head>
 
   <body>
-    {% block content %}
-      {% include './main/navbar.html' %} 
-    {% endblock content%}
-    <!-- OffCanvas Cart Start -->
-    <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
-      <div class="inner">
-        <div class="head">
-          <span class="title">Cart</span>
-          <button class="offcanvas-close">×</button>
-        </div>
-        <div class="body customScroll">
-          <ul class="minicart-product-list">
-            {% for item in items %}
-            <li>
-              <a href="single-product.html" class="image"
-                ><img src="{{ item.product.imageURL }}" alt="Cart product Image"
-              /></a>
-              <div class="content">
-                <a href="single-product.html" class="title"
-                  >{{ item.product.name }}</a
-                >
-                <span class="quantity-price"
-                  >1 x
-                  <span class="amount"
-                    >Ksh.{{ item.get_total|floatformat:2 }}</span
-                  ></span
-                >
-                <a href="#" class="remove">×</a>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="foot">
-          <div class="sub-total">
-            <strong>Subtotal :</strong>
-            <span class="amount">Ksh.{{ item.get_total|floatformat:2 }}</span>
-          </div>
-          <div class="buttons">
-            <a
-              href="{% url 'cart' %}"
-              class="btn btn-dark btn-hover-primary mb-30px"
-              >view cart</a
-            >
-            <a href="{% url 'checkout' %}" class="btn btn-outline-dark current-btn"
-              >checkout</a
-            >
-          </div>
-          <p class="minicart-message">Free Shipping on All Orders Over Ksh200!</p>
-        </div>
-      </div>
-    </div>
-<!-- OffCanvas Cart End -->
+    {% block content %} {% include './main/navbar.html' %} {% endblock content%}
     <script src="{% static 'assets/js/vendor/vendor.min.js' %} "></script>
     <script src="{% static 'assets/js/plugins/plugins.min.js' %} "></script>
     <!-- Main Activation JS -->

@@ -2,108 +2,27 @@
 <!-- checkout area start -->
 <div class="checkout-area mt-60px mb-40px">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-7">
-        <div class="billing-info-wrap">
-          <h3>Billing Details</h3>
-          <div class="row">
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>First Name</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>Last Name</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="billing-info mb-20px">
-                <label>Street Address</label>
-                <input
-                  class="billing-address"
-                  placeholder="House number and street name"
-                  type="text"
-                />
-                <input placeholder="Apartment, suite, unit etc." type="text" />
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="billing-info mb-20px">
-                <label>Town / City</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>State / County</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>Postcode / ZIP</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>Phone</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="billing-info mb-20px">
-                <label>Email Address</label>
-                <input type="text" />
-              </div>
-            </div>
-          </div>
-          <div class="checkout-account mb-30px">
-            <input class="checkout-toggle2" type="checkbox" />
-            <label>Create an account?</label>
-          </div>
-          <div class="checkout-account-toggle open-toggle2 mb-30">
-            <input placeholder="Email address" type="email" />
-            <input placeholder="Password" type="password" />
-            <button class="btn-hover checkout-btn" type="submit">
-              register
-            </button>
-          </div>
-          <div class="additional-info-wrap">
-            <h4>Additional information</h4>
-            <div class="additional-info">
-              <label>Order notes</label>
-              <textarea
-                placeholder="Notes about your order, e.g. special notes for delivery. "
-                name="message"
-              ></textarea>
-            </div>
-          </div>
-          <div class="checkout-account mt-25">
-            <input class="checkout-toggle" type="checkbox" />
-            <label>Ship to a different address?</label>
-          </div>
-          <div class="different-address open-toggle mt-30px">
+    <form action="" id="form">
+      <div class="row">
+        <div class="col-lg-7">
+          <div
+            class="billing-info-wrap"
+            id="shipping-info-wrapper billing-info-wrap"
+          >
+            <h3>Billing Details</h3>
             <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="billing-info mb-20px">
-                  <label>First Name</label>
-                  <input type="text" />
+              <div id="user-info">
+                <div class="col-lg-6 col-md-6">
+                  <div class="billing-info mb-20px">
+                    <label>First Name</label>
+                    <input type="text" name="fname" />
+                  </div>
                 </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="billing-info mb-20px">
-                  <label>Last Name</label>
-                  <input type="text" />
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="billing-info mb-20px">
-                  <label>Company Name</label>
-                  <input type="text" />
+                <div class="col-lg-6 col-md-6">
+                  <div class="billing-info mb-20px">
+                    <label>Last Name</label>
+                    <input type="text" name="lname" />
+                  </div>
                 </div>
               </div>
               <div class="col-lg-12">
@@ -113,164 +32,228 @@
                     class="billing-address"
                     placeholder="House number and street name"
                     type="text"
-                  />
-                  <input
-                    placeholder="Apartment, suite, unit etc."
-                    type="text"
+                    name="address"
                   />
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="billing-info mb-20px">
                   <label>Town / City</label>
-                  <input type="text" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="billing-info mb-20px">
-                  <label>State / County</label>
-                  <input type="text" />
+                  <input type="text" name="city" />
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="billing-info mb-20px">
                   <label>Postcode / ZIP</label>
-                  <input type="text" />
+                  <input type="text" name="zipcode" />
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="billing-info mb-20px">
                   <label>Phone</label>
-                  <input type="text" />
+                  <input type="number" name="phone" />
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="billing-info mb-20px">
-                  <label>Email Address</label>
-                  <input type="text" />
-                </div>
+            </div>
+
+            <div id="user-info2">
+              <div class="checkout-account mb-30px">
+                <input class="checkout-toggle2" type="checkbox" />
+                <label>Create an account?</label>
+              </div>
+              <div class="checkout-account-toggle open-toggle2 mb-30">
+                <input placeholder="Email address" type="email" name="email" />
+                <input placeholder="Password" type="password" name="password" />
+                <button id="form-button" class="btn-hover checkout-btn">
+                  Place Your Order
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-5 mt-md-30px mt-lm-30px">
-        <div class="your-order-area">
-          <h3>Your order</h3>
-          <div class="your-order-wrap gray-bg-4">
-            <div class="your-order-product-info">
-              <div class="your-order-top">
-                <ul>
-                  <li>Product</li>
-                  <li>Total</li>
-                </ul>
+        <div class="col-lg-5 mt-md-30px mt-lm-30px">
+          <div class="your-order-area">
+            <h3>Your order</h3>
+            <div class="your-order-wrap gray-bg-4">
+              <div class="your-order-product-info">
+                <div class="your-order-top">
+                  <ul>
+                    <li>Product</li>
+                    <li>Total</li>
+                  </ul>
+                </div>
+                <div class="your-order-middle">
+                  <ul>
+                    {% for item in items %}
+                    <li>
+                      <span class="order-middle-left"
+                        >{{item.product.name}} X {{item.quantity}}</span
+                      >
+                      <span class="order-price"
+                        >Ksh. {{item.product.price|floatformat:2 }}
+                      </span>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="your-order-bottom">
+                  <ul>
+                    <li class="your-order-shipping">Shipping</li>
+                    <li>Free shipping</li>
+                  </ul>
+                </div>
+                <div class="your-order-total">
+                  <ul>
+                    <li class="order-total">Total</li>
+                    <li>Ksh. {{ order.get_cart_total|floatformat:2 }}</li>
+                  </ul>
+                </div>
               </div>
-              <div class="your-order-middle">
-                <ul>
-                  {% for item in items %}
-                  <li>
-                    <span class="order-middle-left"
-                      >{{item.product.name}} X {{item.quantity}}</span
-                    >
-                    <span class="order-price"
-                      >Ksh. {{item.product.price|floatformat:2 }}
-                    </span>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              <div class="your-order-bottom">
-                <ul>
-                  <li class="your-order-shipping">Shipping</li>
-                  <li>Free shipping</li>
-                </ul>
-              </div>
-              <div class="your-order-total">
-                <ul>
-                  <li class="order-total">Total</li>
-                  <li>Ksh. {{ order.get_cart_total|floatformat:2 }}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="payment-method">
-              <div class="payment-accordion element-mrg">
-                <div class="panel-group" id="accordion">
-                  <div class="panel payment-accordion">
-                    <div class="panel-heading" id="method-one">
-                      <h4 class="panel-title">
-                        <a
-                          data-toggle="collapse"
-                          data-parent="#accordion"
-                          href="#method1"
-                        >
-                          Direct bank transfer
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="method1" class="panel-collapse collapse show">
-                      <div class="panel-body">
-                        <p>
-                          Please send a check to Store Name, Store Street, Store
-                          Town, Store State / County, Store Postcode.
-                        </p>
+              <div class="payment-method hidden" id="payment-info-wrapper">
+                <div class="payment-accordion element-mrg">
+                  <div class="panel-group" id="accordion">
+                    <div class="panel payment-accordion">
+                      <div class="panel-heading" id="method-one">
+                        <h4 class="panel-title">
+                          <a
+                            data-toggle="collapse"
+                            data-parent="#accordion"
+                            href="#method1"
+                          >
+                            PayPal Payment Method
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="method1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <button
+                            id="make-payment"
+                            class="btn-hover checkout-btn payment"
+                            type="submit"
+                          >
+                            PayPal
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="panel payment-accordion">
-                    <div class="panel-heading" id="method-two">
-                      <h4 class="panel-title">
-                        <a
-                          class="collapsed"
-                          data-toggle="collapse"
-                          data-parent="#accordion"
-                          href="#method2"
-                        >
-                          Check payments
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="method2" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <p>
-                          Please send a check to Store Name, Store Street, Store
-                          Town, Store State / County, Store Postcode.
-                        </p>
+                    <div class="panel payment-accordion">
+                      <div class="panel-heading" id="method-two">
+                        <h4 class="panel-title">
+                          <a
+                            class="collapsed"
+                            data-toggle="collapse"
+                            data-parent="#accordion"
+                            href="#method2"
+                          >
+                            M-Pesa Payment Method
+                          </a>
+                        </h4>
                       </div>
-                    </div>
-                  </div>
-                  <div class="panel payment-accordion">
-                    <div class="panel-heading" id="method-three">
-                      <h4 class="panel-title">
-                        <a
-                          class="collapsed"
-                          data-toggle="collapse"
-                          data-parent="#accordion"
-                          href="#method3"
-                        >
-                          Cash on delivery
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="method3" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <p>
-                          Please send a check to Store Name, Store Street, Store
-                          Town, Store State / County, Store Postcode.
-                        </p>
+                      <div id="method2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <button
+                            id="make-payment2"
+                            class="btn-hover checkout-btn payment"
+                            type="submit"
+                          >
+                            M-Pesa
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="Place-order mt-25">
-            <a class="btn-hover" href="#">Place Order</a>
+            <div class="Place-order mt-25">
+              <button class="btn-hover" href="#" type="submit">
+                Place Order
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 <!-- checkout area end -->
+<script type="text/javascript">
+  var shipping = '{{ order.shipping }}';
+  const total = '{{ order.get_cart_total|floatformat:2 }}';
+  if (shipping == 'False') {
+    document.getElementById('shipping-info-wrapper').innerHTML = '';
+  }
+  console.log({ shipping });
+  if (user != 'AnonymousUser') {
+    document.getElementById('user-info').innerHTML = '';
+    document.getElementById('user-info2').innerHTML = '';
+  }
+  if (shipping == 'False' && user != 'AnonymousUser') {
+    document.getElementById('billing-info-wrap').classList.add('hidden');
+    document.getElementById('payment-info-wrap').classList.remove('hidden');
+  }
+
+  let form = document.getElementById('form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log('Form');
+    document.getElementById('form-button').classList.add('hidden');
+    document.getElementById('payment-info-wrapper').classList.remove('hidden');
+  });
+
+  // Payment method hide
+  document.getElementById('make-payment').addEventListener('click', (e) => {
+    e.preventDefault();
+    submitFormData();
+  });
+
+  const submitFormData = () => {
+    console.log('Payment method cliked');
+
+    let userFormData = {
+      fname: null,
+      lname: null,
+      phone: null,
+      email: null,
+      total: total,
+    };
+    console.log({ userFormData });
+    let shippingInfo = {
+      address: null,
+      city: null,
+      zipcode: null,
+    };
+    console.log({ shippingInfo });
+    if (shipping != 'False') {
+      shippingInfo.address = form.address.value;
+      shippingInfo.city = form.city.value;
+      shippingInfo.zipcode = form.zipcode.value;
+    }
+    if (user == 'AnonymousUser') {
+      userFormData.fname = form.fname.value;
+      userFormData.lname = form.lname.value;
+      userFormData.phone = form.phone.value;
+      userFormData.email = form.email.value;
+    }
+    const url = '/process_order/';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({
+        'form': userFormData,
+        'shipping': shippingInfo,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Success', data);
+        alert('Transaction Completed');
+        window.location.href = "{% url 'store' %}";
+      });
+    
+  };
+</script>
 {% endblock content %}
