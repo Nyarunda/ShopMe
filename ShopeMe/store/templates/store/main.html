@@ -84,6 +84,8 @@
 
   <body>
     {% block content %} {% include './main/navbar.html' %} {% endblock content%}
+    {% include './main/offcanvas-cart.html' %}
+
     <script src="{% static 'assets/js/vendor/vendor.min.js' %} "></script>
     <script src="{% static 'assets/js/plugins/plugins.min.js' %} "></script>
     <!-- Main Activation JS -->
